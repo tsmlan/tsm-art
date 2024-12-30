@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="homepage.css">
+
+	<title>intmon</title>
+<head>
+<body>
+<div class = "wrapper">
+	<div class = "header"><h1>int int int int int</h1></div>
+	<div class="topnav">
+		<a href="homepage.html">home</a>
+		<a href="commisions.html">comms</a>
+		<a href="#">drawy</a>
+		<a href="https://twitter.com/glueint" target="_blank">socials</a>
+	</div>
+	<div class = "row">
+		<div class="column side">
+
+			<div id="profile" class="card">
+				<h2>sidebar</h2>
+				<img src="image.png" id=pfp>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristique. Quisque vehicula, risus eget aliquam placerat, purus leo tincidunt eros, eget luctus quam orci in velit. Praesent scelerisque tortor sed accumsan convallis.</p>
+
+			</div>			
+		</div>
+		<div class="column main">
+			<div class="card">
+				<h2>mian</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristique. Quisque vehicula, risus eget aliquam placerat, purus leo tincidunt eros, eget luctus quam orci in velit. Praesent scelerisque tortor sed accumsan convallis.</p>
+				<marquee>    you need a sincere intervention in your life. unfortunately the degree of intervention would require a full-on parent-child style relationship where nearly all autonomy is taken from you and you are forced to grow for years at a time with proper guidance. there is no way you are going to undo what has been done to your psyche at this point. the best you can do is try to cope with it because you're never getting off that ADHD/phonebrain treadmill. i am sure that others have thrown their phones away in the past but the reality is for a great many people it simply isn't possible and for all intents and purposes they are physiologically linked to their screen time and infinity scrolls. i don't put it like this to kick you while you're down, but to try and help you see things for how they really are. and they are really bad.</marquee>
+		
+			</div>
+		</div>
+	</div>
+	<class="row">
+		<div id="widget" class="card">
+			<h2>widget</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristique. Quisque vehicula, risus eget aliquam placerat, purus leo tincidunt eros, eget luctus quam orci in velit. Praesent scelerisque tortor sed accumsan convallis.</p>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

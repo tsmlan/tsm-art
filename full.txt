@@ -1,0 +1,129 @@
+*{
+
+	margin: 0px;
+}
+body {
+  background-color: royalblue;
+
+}
+div{
+	
+	box-sizing: border-box;
+	margin: 0px;
+	padding:0px;
+
+}
+div:hover
+{
+	outline: solid;
+	outline-color:red;
+
+}
+.wrapper {
+	background-color:lightblue;
+	width:1000px;
+
+	
+	margin: 40px auto 40px auto ;
+	border:solid;
+	padding:10px;
+}
+@media screen and (max-width: 1100px) {
+  .wrapper {
+    width: 90%;
+  }
+}
+.header{
+	text-align: center;
+	background-color: skyblue;
+}
+.topnav {
+	overflow: hidden;
+
+
+}
+
+/* Style the topnav links */
+.topnav a:link {
+	float: left;
+	display: block;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	background-color:lightblue;
+
+}
+.topnav a:visited {
+	float: left;
+	display: block;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	background-color:lightblue;
+
+}
+
+/* Change color on hover */
+.topnav a:hover {
+	background-color: blue;
+	color: black;
+}
+.topnav a:active {
+	background-color: white;
+	color: black;
+}
+
+	
+.column {
+
+
+	padding:5px;
+
+
+
+	
+}
+
+.column.main {
+	width:70%;
+	float:left;
+
+}
+.column.side {
+	width:30%;
+	float:right;
+}
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+marquee{
+	color:red;
+	font-family:impact;
+}
+
+h2{
+	background-color:#DFF;
+}
+
+.card{
+	background-color:white;
+	height:475px;
+	overflow: hidden;
+
+}
+
+#profile{
+
+
+	text-align:center;
+}
+
+#pfp{
+	display: block;
+	margin: 10% auto;
+
+	text-align:center;
+}
