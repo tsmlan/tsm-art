@@ -1,83 +1,221 @@
 <!DOCTYPE html>
-
 <html>
-<head>
-	<link rel="stylesheet" href="style.css">
-	<link rel="stylesheet" href="homepage.css">
+    <head>
+        <title>Thea Samuels Moselle - portfolio</title>
 
-	<title>haha</title>
-<head>
-<body>
-<div class = "wrapper">
-	<div class = "header"><h1>website practice website!!!!</h1></div>
-	<div class="topnav">
-		<a href="homepage.html">home</a>
-		<a href="game/game.html">just the game</a>
-	</div>
-	<div class = "row">
-		<div class="column side">
+        <style>
+            body{
+                font-family: Arial, Helvetica, sans-serif;
+                text-align: center;
+            }
+            .gallery{
+                
+                outline: #cccccc00;
+                display: block;
+                height: 100%;
+                padding: 10%;
+                
+            }
+            #currentWrap{
+                background-color: rgba(0, 0, 0, 0.432);
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                z-index: 2;
+            
+            }
+            #current{
+                
+                display: inline-block;
+                position: fixed;
+                width: 80%;
+                height: 80%;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
 
-			<div id="profile" class="card">
-				<h2>sidebar</h2>
-				<img src="image.png" id=pfp>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristique. Quisque vehicula, risus eget aliquam placerat, purus leo tincidunt eros, eget luctus quam orci in velit. Praesent scelerisque tortor sed accumsan convallis.</p>
+            }
+            #currentImage{
+                max-height: 100%;
+                max-width: 100%;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right:0;
+                margin: auto;
+                position: absolute;
+                z-index: 3;
 
-			</div>			
-		</div>
-		<div class="column main">
-			<div class="card">
-				<h2>main</h2>
-				<iframe src ="game/game.html" width = "100%" height = "90%" scrolling = "no" ></iframe>
-				
-				<marquee>work in progress</marquee>
-			
-			</div>
-		</div>
-	</div>
-	<div class="row">
-	<div class="column">
+            }
+            #menu{
+                position: fixed;
+                top: -50px;
+                left: 40%;
+                right: 40%;
+                z-index: 3;
+            }
+            button{
+                border: none;
+                color:rgba(255, 255, 255, 0.651);
+                background-color: rgba(37, 98, 151, 0);
+                font-size: 40px;
+            }
+            button:hover{
+                color: #ffffff;
+            }
+            .image{
+                width: 200%;
+                height:auto;
+                object-fit: cover;
+
+            }
+            .image:hover{
+                filter:brightness(80%);
+            }
+            .box{
+                border: 5px solid #cccccc00;
+                float: left;
+                width: 180px;
+                height: 180px;
+                overflow:hidden ;
+                float: left;
+
+            }
+
+            #wrapper{
+                padding:auto;
+                margin:auto;
+                width:800px;
+                overflow:hidden;
+                background-color: white;
+                bottom: 0;
+
+            }
+
+            @media screen and (max-width: 800px) {
+            #wrapper {
+                width: 100%;
+            }
+
+            }
 
 
-	</div>
-	</div>
-	
-</div>
-<div class="ribbon">
-<div class="scroller">
 
-<!--<img src="2.gif">-->
-</div>
-</div>
-	
-<div id="rose-container">
+            img#illust3 { object-position: -100px -90px;}
+            img#illust4 {object-position: -80px -20px; width: 190%;}  
+        </style>
+    </head>
+    <body>
 
-	
-</div>
-</body>
+        <div id = "currentWrap" >
+        <div id = "current">
+            <div id = "menu">
+            <button onclick = "left()">&lt</button>
+            <button onclick = "display(0)">×</button>
+            <button onclick = "right()">&gt</button>
+            
+            </div>
+            <img id = "currentImage">
 
-<script>
-const random = (num) => {
 
-return Math.floor(Math.random() * num);
+        </div>
+        </div>
+    <div id = "wrapper">
+        <h1>Thea Samuels Moselle</h1>
+        <div class = "gallery">
+            <h2>designs</h2>
 
+            <div id = "design" ></div>
+        </div>
+    </br>
+        <div class = "gallery">
+            <h2>illustration</h2>
+            <div id = "illust" ></div>
+        </div>
+    </div>
+        
+
+    </body>
+    <script>
+        class subCategory{
+            constructor(name,numberOfImages){
+                this.name = name;
+                this.numberOfImages = numberOfImages;
+            }
+        }
+        function createGallery(subCategory){
+        const imageContainer = document.getElementById(subCategory.name);
+const numberOfImages = subCategory.numberOfImages; // Adjust as necessary
+
+for (let i = 1; i <= numberOfImages; i++) {
+    const box = document.createElement('div')
+    box.className = "box";
+    const img = document.createElement('img');
+    img.setAttribute("class","image")
+    img.src = `images/${subCategory.name}/img (${i}).jpg`; // Ensure this path is correct
+    img.alt = `Image ${i}`;
+    img.setAttribute("onclick","display("+i+",\""+subCategory.name+"\")");
+    img.id = ""+subCategory.name+i+"";
+
+    box.appendChild(img);
+    imageContainer.appendChild(box);
+}
 }
 
+function display(imgid, subCategoryName){
+    if (subCategoryName == "illust")
+        currentSub = illust;
+    else 
+        currentSub = design;
+    //document.getElementById("gallery").innerHTML=imgid;
+    const current = document.getElementById("currentWrap");
 
-	const roses = document.getElementById("rose-container");
-	let roseCount = 10;
-	for(let i = 0;i < roseCount; i++){
-		let rose = document.createElement("div");
-		rose.id= "rose";
-		rose.innerHTML= "<img src=\"rose.png\" >";
-		rose.style.cssText = `
-			left: ${i*100/roseCount}%;
-			top:${random(100)}%;
-			animation:float ${8+random(2.124)}s infinite,fade ${4+random(2)}s infinite;
-			animation-direction: ${Math.random()>=(0.5)? "reverse":"normal"};
+    currentImg = imgid;
+    if (currentImg === 0){
+        current.style.display="none";
+        currentSub = null;
+    }
+    else{
+        current.style.display="inline-block";
+        //current.setAttribute("onclick","display("+0+")");
+        //img = document.createElement("img");
+        //img.src = `images/img (${imgid}).jpg`;
+        document.getElementById("currentImage").src = `images/${currentSub.name}/img (${imgid}).jpg`;
+    }
 
-			`;
-		roses.append(rose);
+    
+}
+function left(){if (currentImg===1)
+                    display(currentSub.numberOfImages,currentSub.name);
+                else
+                    display(((currentImg-1)%(currentSub.numberOfImages)),currentSub.name);}
+function right(){display((currentImg%currentSub.numberOfImages)+1,currentSub.name);}
+document.addEventListener("keydown",(event)=>{
+    switch (event.key) {
+        case "ArrowLeft": case "a":
+            left();
+            break;
+        case "ArrowRight": case "d":
+            right();
+            break;
+        case "Escape": case "Backspace":
+            display(0);
+            break;
+        default:
+            break;
+    }
 
-	}
-</script>
+})
+let currentImg = 0;
+const illust = new subCategory("illust",5);
+const design = new subCategory("design",3);
+let currentSub = null;
+createGallery(illust);
+createGallery(design);
+
+
+    </script>
 </html>
