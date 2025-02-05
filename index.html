@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html>
-    <head>
+<html><head>
         <title>Thea Samuels Moselle - portfolio</title>
 
         <style>
@@ -25,37 +24,71 @@
                 height: 100%;
                 width: 100%;
                 z-index: 2;
+
+            
+            }
+            #exit{
+                position: fixed;
+                top: 0;
+                left: 0;
+                bottom:0;
+                right:0;
+                height: 100%;
+                width: 100%;
+                z-index: -1;
             
             }
             #current{
                 
-                display: inline-block;
-                position: fixed;
-                width: 80%;
-                height: 80%;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
+                display: block;
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    top: 50%;
+    left: 50%;
+    margin: auto;
+    transform: translate(-50%, -50%);
+    overflow: auto;
+
 
             }
-            #currentImage{
+            #currentDisplay{
                 max-height: 100%;
                 max-width: 100%;
                 top: 0;
                 bottom: 0;
                 left: 0;
-                right:0;
-                margin: auto;
+                height: fit-content;
+                width: fit-content;
+                margin: 3%;
                 position: absolute;
                 z-index: 3;
+                pointer-events: all;
+                display: inline-block;
 
             }
+            #currentImage{
+    height: auto;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* width: fit-content; */
+    /* height: fit-content; */
+    position: relative;
+    margin: 0;
+    overflow: auto;
+    /* display: inline-block; */
+}
             #menu{
                 position: fixed;
-                top: -50px;
+                top: 50px;
                 left: 40%;
                 right: 40%;
                 z-index: 3;
+                pointer-events:all;
+
             }
             button{
                 border: none;
@@ -76,7 +109,6 @@
                 filter:brightness(80%);
             }
             .box{
-                border: 5px solid #cccccc00;
                 float: left;
                 width: 180px;
                 height: 180px;
@@ -89,7 +121,6 @@
                 padding:auto;
                 margin:auto;
                 width:800px;
-                overflow:hidden;
                 background-color: white;
                 bottom: 0;
 
@@ -102,6 +133,7 @@
 
             }
             
+
             @media screen and (max-width: 768px) {
             #button {
                 font-size: 100px;
@@ -109,62 +141,93 @@
 
             }
 
+            #description{
+                position: relative;
+                z-index: 3;
+            }
+            
 
 
-            img#illust3 { object-position: -100px -90px;}
-            img#illust4 {object-position: -80px -20px; width: 190%;}  
+            img#illustr2 { object-position: -100px -90px;}
+            img#illustr3 {object-position: -80px -20px; width: 190%;}  
         </style>
+
+
     </head>
     <body>
 
-        <div id = "currentWrap" >
-        <div id = "current">
-            <div id = "menu">
-            <button onclick = "left()">&lt</button>
-            <button onclick = "display(0)">×</button>
-            <button onclick = "right()">&gt</button>
-            
-            </div>
-            <img id = "currentImage">
+        <div id="currentWrap" >
+            <div id="menu">
+                <button onclick="left()">&lt;</button>
+                <button onclick="display(-1)">×</button>
+                <button onclick="right()">&gt;</button>
+                
+                </div>
+                <div id="exit" onclick="display(-1)"></div>
 
+                <div id="current">
+                
+                    <div id="pain">
+                        <div id="currentDisplay">
 
+                            <div id="description"></div>
+                            <img id="currentImage"></img>
+                        </div>
+                   </div>
+
+                </div>
         </div>
-        </div>
-    <div id = "wrapper">
+
+    <div id="wrapper">
         <h1>Thea Samuels Moselle</h1>
-        <div class = "gallery">
+        <div class="gallery">
             <h2>designs</h2>
 
-            <div id = "design" ></div>
+            <div id="design"></div>
         </div>
-    </br>
-        <div class = "gallery">
+    <br>
+        <div class="gallery">
             <h2>illustration</h2>
-            <div id = "illust" ></div>
+            <div id="illust"></div>
         </div>
     </div>
         
 
-    </body>
-    <script>
-        class subCategory{
-            constructor(name,numberOfImages){
-                this.name = name;
-                this.numberOfImages = numberOfImages;
-            }
-        }
-        function createGallery(subCategory){
-        const imageContainer = document.getElementById(subCategory.name);
-const numberOfImages = subCategory.numberOfImages; // Adjust as necessary
+    
 
-for (let i = 1; i <= numberOfImages; i++) {
+</body>
+<script>
+
+    class Record{
+        constructor(path,description = ""){
+            this.path = path;
+            this.description = description;
+        }
+    }
+    class Category{
+        constructor(name){
+            this.values = new Array();
+            this.name = name;
+        }
+    }
+
+
+
+
+
+
+
+
+function createGallery(subCategory, divId){
+    const imageContainer = document.getElementById(divId);
+
+for (let i = 0; i < subCategory.values.length; i++) {
     const box = document.createElement('div')
     box.className = "box";
     const img = document.createElement('img');
     img.setAttribute("class","image")
-    img.src = `images/${subCategory.name}/img (${i}).jpg`; // Ensure this path is correct
-    img.alt = `Image ${i}`;
-    img.setAttribute("onclick","display("+i+",\""+subCategory.name+"\")");
+    img.src = subCategory.values[i].path; // Ensure this path is correct
+    img.setAttribute("onclick","display("+i+","+subCategory.name+")");
     img.id = ""+subCategory.name+i+"";
 
     box.appendChild(img);
@@ -172,57 +235,67 @@ for (let i = 1; i <= numberOfImages; i++) {
 }
 }
 
-function display(imgid, subCategoryName){
-    if (subCategoryName == "illust")
-        currentSub = illust;
-    else 
-        currentSub = design;
-    //document.getElementById("gallery").innerHTML=imgid;
-    const current = document.getElementById("currentWrap");
+function display(image, subCategory = currentSub){
 
-    currentImg = imgid;
-    if (currentImg === 0){
-        current.style.display="none";
-        currentSub = null;
-    }
-    else{
-        current.style.display="inline-block";
-        //current.setAttribute("onclick","display("+0+")");
-        //img = document.createElement("img");
-        //img.src = `images/img (${imgid}).jpg`;
-        document.getElementById("currentImage").src = `images/${currentSub.name}/img (${imgid}).jpg`;
-    }
 
-    
+
+//document.getElementById("gallery").innerHTML=imgid;
+const current = document.getElementById("currentWrap");
+if (image === -1){
+    current.style.display="none";
+    currentSub = null;
 }
-function left(){if (currentImg===1)
-                    display(currentSub.numberOfImages,currentSub.name);
-                else
-                    display(((currentImg-1)%(currentSub.numberOfImages)),currentSub.name);}
-function right(){display((currentImg%currentSub.numberOfImages)+1,currentSub.name);}
+
+else{
+    currentImg = image;
+    currentSub = subCategory;
+    current.style.display="inline-block";
+    //current.setAttribute("onclick","display("+0+")");
+    //img = document.createElement("img");
+    //img.src = `images/img (${imgid}).jpg`;
+    document.getElementById("currentImage").src = subCategory.values[image].path;
+    document.getElementById("description").innerHTML = subCategory.values[image].description;
+}
+
+
+}
+
+
+function left(){display((currentImg+currentSub.values.length-1)%currentSub.values.length)};
+function right(){display((currentImg+1)%currentSub.values.length)};
 document.addEventListener("keydown",(event)=>{
-    switch (event.key) {
-        case "ArrowLeft": case "a":
-            left();
-            break;
-        case "ArrowRight": case "d":
-            right();
-            break;
-        case "Escape": case "Backspace":
-            display(0);
-            break;
-        default:
-            break;
-    }
+switch (event.key) {
+    case "ArrowLeft": case "a":
+        left();
+        break;
+    case "ArrowRight": case "d":
+        right();
+        break;
+    case "Escape": case "Backspace":
+        display(-1,null);
+        break;
+    default:
+        break;
+}
 
 })
-let currentImg = 0;
-const illust = new subCategory("illust",5);
-const design = new subCategory("design",3);
+const designs = new Category("designs");
+    designs.values.push(new Record("images\\design\\img (1).jpg"));
+    designs.values.push(new Record("images\\design\\img (2).jpg"));
+    designs.values.push(new Record("images\\design\\img (3).jpg"));
+
+const illustr = new Category("illustr");
+illustr.values.push(new Record("images\\illust\\img (1).jpg","<h>A level work, Royal Academy architecture study</h>"));
+illustr.values.push(new Record("images\\illust\\img (2).jpg","<h>A level final piece</h>"));
+illustr.values.push(new Record("images\\illust\\img (3).jpg","<h>A level work, local church study</h>"));
+illustr.values.push(new Record("images\\illust\\img (4).jpg","<h>Personal architecture study</h>"));
+illustr.values.push(new Record("images\\illust\\img (5).jpg","<h>A level work, digital photo study</h>"));
+
+let currentImg = null;
 let currentSub = null;
-createGallery(illust);
-createGallery(design);
+createGallery(illustr,"illust");
+createGallery(designs,"design");
 
 
-    </script>
+</script>
 </html>
